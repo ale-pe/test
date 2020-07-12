@@ -33,8 +33,60 @@
                 <h1 class="display-4">Lancer la partie</h1>
                 <p class="lead">This is a full-screen centered hero unit.</p>
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    <a class="btn btn-primary btn-lg" href="#" onclick="config()" role="button">Learn more</a>
                 </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="config">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+                <div class="card ">
+                    <div class="card-header text-center">
+                      Configuration
+                    </div>
+                    <div class="card-body text-left">
+                        <form>
+                            <div class="form-group row">
+                              <label for="staticEmail" class="col-sm-2 col-form-label">Equipe A :</label>
+                              <div class="col-sm-10">
+                                <div class="col-auto my-1">
+                                    <select class="custom-select mr-sm-2" id="colorA">
+                                      <option value="Rouge" selected>Rouge</option>
+                                      <option value="Bleu">Bleu</option>
+                                      <option value="Jaune">Jaune</option>
+                                      <option value="Vert">Vert</option>
+                                      <option value="Noir">Noir</option>
+                                      <option value="Blanc">Blanc</option>
+                                    </select>
+                                  </div>                              
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Equipe B :</label>
+                                <div class="col-sm-10">
+                                    <div class="col-auto my-1">
+                                      <select class="custom-select mr-sm-2" id="colorB">
+                                        <option value="Rouge">Rouge</option>
+                                        <option value="Bleu" selected>Bleu</option>
+                                        <option value="Jaune">Jaune</option>
+                                        <option value="Vert">Vert</option>
+                                        <option value="Noir">Noir</option>
+                                        <option value="Blanc">Blanc</option>
+                                      </select>
+                                    </div>                              
+                                  </div>
+                              </div>
+                          </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a class="btn btn-primary btn-lg" href="#" onclick="start()" role="button">Lancer partie</a>
+
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -44,34 +96,34 @@
     <div class="row">
         <div class="col-12 p-0">
 
-            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+            <div class="jumbotron min-vh-100 text-center m-0  d-flex flex-column justify-content-center" id="gamecolor">
                 <div class="card" id="engagement">
                     <div class="card-body">
-                        <button type="button" onclick="engagementA()" class="btn btn-primary btn-lg btn-block">Engagement équipe A</button>
-                        <button type="button"  onclick="engagementB()" class="btn btn-primary btn-lg btn-block">Engagement équipe B</button>
+                        <button type="button" id="bpengA" onclick="engagementA()" class="btn btn-primary btn-lg btn-block">Engagement équipe A</button>
+                        <button type="button"  id="bpengB" onclick="engagementB()" class="btn btn-primary btn-lg btn-block">Engagement équipe B</button>
                     </div>
                   </div>
 
                   <div class="card" id="equipeA">
-                    <div class="card-body bg-danger">
+                    <div class="card-body">
                         <button type="button" onclick="tirmenuA()" class="btn btn-primary btn-lg btn-block">TIR</button>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">PASSE</button>
+                        <button type="button" onclick="passeA()"class="btn btn-primary btn-lg btn-block">PASSE</button>
                         <button type="button"  onclick="perteA()" class="btn btn-primary btn-lg btn-block">PERTE</button>
                     </div>
                   </div>
 
 
                   <div class="card" id="equipeB">
-                    <div class="card-body bg-info">
+                    <div class="card-body">
                         <button type="button" onclick="tirmenuB()" class="btn btn-primary btn-lg btn-block">TIR</button>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">PASSE</button>
+                        <button type="button" onclick="passeB()" class="btn btn-primary btn-lg btn-block">PASSE</button>
                         <button type="button"  onclick="perteB()" class="btn btn-primary btn-lg btn-block">PERTE</button>
 
                     </div>
                   </div>
 
                   <div class="card" id="equipeAtir">
-                    <div class="card-body bg-danger">
+                    <div class="card-body">
                         <button type="button" onclick="tir3ptsA()" class="btn btn-primary btn-lg btn-block">3 points</button>
                         <button type="button" onclick="tir1ptsA()" class="btn btn-primary btn-lg btn-block">Reussi</button>
                         <button type="button" onclick="tirrecupA()" class="btn btn-primary btn-lg btn-block">Récupération</button>
@@ -80,7 +132,7 @@
                   </div>
 
                   <div class="card" id="equipeBtir">
-                    <div class="card-body bg-info">
+                    <div class="card-body">
                         <button type="button" onclick="tir3ptsB()" class="btn btn-primary btn-lg btn-block">3 points</button>
                         <button type="button" onclick="tir1ptsB()" class="btn btn-primary btn-lg btn-block">Reussi</button>
                         <button type="button" onclick="tirrecupB()" class="btn btn-primary btn-lg btn-block">Récupération</button>
@@ -122,6 +174,8 @@
 
 
 <script>
+var colorequipeA = "";
+var colorequipeB = "";
 var state = 0;
 var scoreA = 0;
 var scoreB = 0;
@@ -129,26 +183,96 @@ var t1ptsA = 0;
 var t1ptsB = 0;
 var t3ptsA = 0;
 var t3ptsB = 0;
-var passeA = 0;
-var passeB = 0;
 var tirA = 0;
 var tirB = 0;
-var pA =0;
-var pB =0;
+var passA =0;
+var passB =0;
 var pertA =0;
 var pertB = 0;
 var tirpertA =0;
 var tirpertB =0;
 var tirrecuA =0;
 var tirrecuB =0;
-
-document.getElementById("home").style.display = "none"
-document.getElementById("game").style.display = "block"
+document.getElementById("nav1").style.display = "none"
+document.getElementById("nav2").style.display = "none"
+document.getElementById("home").style.display = "block"
+document.getElementById("game").style.display = "none"
 document.getElementById("equipeA").style.display = "none"
 document.getElementById("equipeB").style.display = "none"
 document.getElementById("equipeAtir").style.display = "none"
 document.getElementById("equipeBtir").style.display = "none"
 document.getElementById("finpartie").style.display = "none"
+document.getElementById("config").style.display = "none"
+function config() {
+    document.getElementById("home").style.display = "none"
+document.getElementById("config").style.display = "block"
+}
+
+
+//start
+function start(){
+document.getElementById("config").style.display = "none"
+document.getElementById("home").style.display = "none"
+document.getElementById("game").style.display = "block"
+document.getElementById("nav1").style.display = "block"
+document.getElementById("nav2").style.display = "block"
+colorequipeA = document.getElementById("colorA").options[document.getElementById("colorA").selectedIndex].value;
+colorequipeB = document.getElementById("colorB").options[document.getElementById("colorB").selectedIndex].value;
+document.getElementById('bpengA').innerHTML = 'Engagement équipe '+colorequipeA;
+document.getElementById('bpengB').innerHTML = 'Engagement équipe '+colorequipeB;
+}
+
+
+function coloreqA(){
+    if (colorequipeA == "Rouge"){
+        document.getElementById("gamecolor").style.backgroundColor = "#EA2027";
+    }
+    if (colorequipeA == "Bleu"){
+        document.getElementById("gamecolor").style.backgroundColor = "#0652DD";
+    }
+    if (colorequipeA == "Jaune"){
+        document.getElementById("gamecolor").style.backgroundColor = "#F79F1F";
+    }
+    if (colorequipeA == "Vert"){
+        document.getElementById("gamecolor").style.backgroundColor = "#009432";
+    }
+    if (colorequipeA == "Noir"){
+        document.getElementById("gamecolor").style.backgroundColor = "#222f3e";
+    }
+    if (colorequipeA == "Blanc"){
+        document.getElementById("gamecolor").style.backgroundColor = "#c8d6e5";
+    }
+}
+
+function coloreqB(){
+    if (colorequipeB == "Rouge"){
+        document.getElementById("gamecolor").style.backgroundColor = "#EA2027";
+    }
+    if (colorequipeB == "Bleu"){
+        document.getElementById("gamecolor").style.backgroundColor = "#0652DD";
+    }
+    if (colorequipeB == "Jaune"){
+        document.getElementById("gamecolor").style.backgroundColor = "#F79F1F";
+    }
+    if (colorequipeB == "Vert"){
+        document.getElementById("gamecolor").style.backgroundColor = "#009432";
+    }
+    if (colorequipeB == "Noir"){
+        document.getElementById("gamecolor").style.backgroundColor = "#222f3e";
+    }
+    if (colorequipeB == "Blanc"){
+        document.getElementById("gamecolor").style.backgroundColor = "#c8d6e5";
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -156,11 +280,13 @@ document.getElementById("finpartie").style.display = "none"
 function engagementA() {
     document.getElementById("engagement").style.display = "none"
     document.getElementById("equipeA").style.display = "block"
+    coloreqA()
 }
 
 function engagementB() {
     document.getElementById("engagement").style.display = "none"
     document.getElementById("equipeB").style.display = "block"
+    coloreqB()
 }
 
 // PERTE
@@ -169,12 +295,14 @@ function perteA() {
     document.getElementById("equipeAtir").style.display = "none"
     document.getElementById("equipeB").style.display = "block"
     pertA = pertA +1;
+    coloreqB()
 }
 function perteB() {
     document.getElementById("equipeB").style.display = "none"
     document.getElementById("equipeBtir").style.display = "none"
     document.getElementById("equipeA").style.display = "block"
     pertB = pertB + 1;
+    coloreqA()
 }
 
 // TIR
@@ -191,10 +319,11 @@ function tirmenuB() {
 
 //PASSE
 function passeA() {
-    pA = pA + 1;
+    passA = passA + 1;
+    console.log(passA)
 }
 function passeB() {
-    pB = pB + 1;
+    passB = passB + 1;
 }
 
 // 3pts
@@ -204,6 +333,7 @@ function tir3ptsA() {
     document.getElementById("equipeB").style.display = "block"
     t3ptsA = t3ptsA +1;
     scoreA = scoreA +3;
+    coloreqB()
 }
 function tir3ptsB() {
     document.getElementById("equipeB").style.display = "none"
@@ -211,6 +341,7 @@ function tir3ptsB() {
     document.getElementById("equipeA").style.display = "block"
     t3ptsB = t3ptsB +1;
     scoreB = scoreB +3;
+    coloreqA()
 }
 
 // 1pts
@@ -220,6 +351,7 @@ function tir1ptsA() {
     document.getElementById("equipeB").style.display = "block"
     scoreA = 1 + scoreA;
     t1ptsA = 1 + t1ptsA;
+    coloreqB()
 }
 function tir1ptsB() {
     document.getElementById("equipeB").style.display = "none"
@@ -228,6 +360,7 @@ function tir1ptsB() {
     t1ptsB = 1 + t1ptsB;
     scoreB = 1 + scoreB;
     console.log(t1ptsB);
+    coloreqA()
 }
 
 // recup
@@ -247,11 +380,13 @@ function tirperteA() {
     document.getElementById("equipeA").style.display = "block"
     document.getElementById("equipeAtir").style.display = "none"
     tirpertA = tirpertA + 1;
+    coloreqB()
 }
 function tirperteB() {
     document.getElementById("equipeB").style.display = "block"
     document.getElementById("equipeBtir").style.display = "none"
     tirpertB = tirpertB + 1;
+    coloreqA()
 }
 
 function finpartie(){
@@ -266,9 +401,9 @@ document.getElementById("nav1").style.display = "none"
 document.getElementById("finpartie").style.display = "block"
 var table = document.getElementById("table");
 var row = table.insertRow(0);
-row.insertCell(0).innerHTML = "Equipe A";
+row.insertCell(0).innerHTML = "Equipe "+colorequipeA;
 row.insertCell(1).innerHTML = "";
-row.insertCell(2).innerHTML = "Equipe B";
+row.insertCell(2).innerHTML = "Equipe "+colorequipeB;
 var row = table.insertRow(1);
 row.insertCell(0).innerHTML = scoreA;
 row.insertCell(1).innerHTML = "Score";
@@ -290,14 +425,10 @@ row.insertCell(0).innerHTML = tirpertA+tirrecuA;
 row.insertCell(1).innerHTML = "Tirs echoués";
 row.insertCell(2).innerHTML = tirpertB+tirrecuB;
 var row = table.insertRow(6);
-row.insertCell(0).innerHTML = tirpertA+tirrecuA;
-row.insertCell(1).innerHTML = "Tirs echoués";
-row.insertCell(2).innerHTML = tirpertB+tirrecuB;
-var row = table.insertRow(7);
-row.insertCell(0).innerHTML = pA;
+row.insertCell(0).innerHTML = passA;
 row.insertCell(1).innerHTML = "Passes";
-row.insertCell(2).innerHTML = pB;
-var row = table.insertRow(8);
+row.insertCell(2).innerHTML = passB;
+var row = table.insertRow(7);
 row.insertCell(0).innerHTML = pertA;
 row.insertCell(1).innerHTML = "Pertes";
 row.insertCell(2).innerHTML = pertB;
@@ -315,4 +446,5 @@ window.saveFile = function saveFile () {
     									[opts,[sheet_1_data]]);
 }
 </script>
+
 
