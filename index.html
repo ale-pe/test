@@ -312,8 +312,7 @@ window.saveFile = function saveFile () {
     var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
     var opts = [{sheetid:'Sheet One',header:true}];
     var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
-    									[opts,[sheet_1_data ,sheet_2_data]]);
+    									[opts,[sheet_1_data]]);
 }
 </script>
-
 
