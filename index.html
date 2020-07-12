@@ -1,319 +1,353 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Sport Webapps</title>
+  <title>Compréhension Orale V1</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="popper.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <style>
+      body{
+        background: url('bg.jpeg') no-repeat center center fixed;
+      }
 
-  <nav class="navbar fixed-top navbar-light bg-light" id="nav1">
-    <a class="navbar-brand" href="#">TIME</a>
-    <a class="navbar-brand" href="#">|</a>
-    <a class="navbar-brand" href="#">Score A :</a>
-    <a class="navbar-brand" href="#">Score B :</a>
-  </nav>
-  <nav class="navbar fixed-bottom navbar-light bg-light" id="nav2">
-    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="finpartie()">Fin de partie</button>
-
-  </nav>
-
-
-
-
+      .home {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+video {
+    width: 100%;
+    height: auto;
+  }
+  
+  </style>
 </head>
-<div class="container-fluid" id="home">
-    <div class="row">
-        <div class="col-12 p-0">
-            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-                <h1 class="display-4">Lancer la partie</h1>
-                <p class="lead">This is a full-screen centered hero unit.</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                </p>
-            </div>
-        </div>
+<body>
+<!-- Navigation -->
+<div id="home" class="home">
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow" id="nav">
+    <div class="container">
+      <a class="navbar-brand" href="#">Compréhension Orale V1</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+
+  <!-- Page Content -->
+  <div class="container" id="etp1">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <h1 class="font-weight-light">Etape 1 : Choix du document</h1>
+        <br>
+        <div class="alert alert-danger">
+          <p><strong>⚠ L'outil rencontre actuellement des problèmes sur le navigateur Firefox. Veuillez privilégier Chrome.</p>
+            <p>⚠ La fonction "choix de la fin du document" est indisponible en raison de bugs. </p>
+           📺 Veuiilez mettre votre navigateur en plein écran (Touche F11)</strong>
+        </div>
+        <p>Pour commencer, veuillez choisir une vidéo ou un document audio :</p>
+        <p><input type="file"  id="myFile"></p>
+        <p><button type="button" onclick="goetp2()" class="btn btn-primary btn-block">Suivant</button> </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container" id="etp2">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <h1 class="font-weight-light">Etape 2 : Paramètres de du docuement</h1>
+        <br>
+        <p>Veuillez configurer le début du document. Pour cela naviguez dans le player et cliquez sur "Choisir ce point" pour configurer le début de la vidéo. Si vous voulez que la vidéo commence à 0:00:00, continuez à l'étape suivante.</p>
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td colspan="3"><div id=video2 >
+                      <video controls id="theVideo1" onended="pause()">
+                  </div></td>
+                  </tr>
+              <tr>
+                <td >Début du document à :</td>
+                <td id="textedebutvideo">00:00:00</td>
+                <td><div class="btn-group">
+                  <button type="button" class="btn btn-primary" onclick="getCurTimedebut()">Choisir ce point</button>
+                  <button type="button" class="btn btn-danger" onclick="resetDebut()">Remettre a zéro</button></td>
+                    </div>
+              </tr>
+              <tr>
+                <td >Fin du docuement à :</td>
+                <td id="textefinvideo">00:00:00</td>
+                <td><div class="btn-group">
+                  </div>           
+                </tr>
+
+            </tbody>
+          </table>
+        <p><button type="button" onclick="goetp3()" class="btn btn-primary btn-block">Suivant</button> </p>
+      </div>
+    </div>
+  </div>
+  </div> 
+
+  <div class="container" id="etp3">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <h1 class="font-weight-light">Etape 3 : Réglage du temps</h1>
+        <br>
+        <p>Pour terminer, veuillez configurer les réglages de temps..</p>
+        <table class="table table-hover">
+          <tbody>
+              <tr>
+                <td>Nombre d'écoutes :</td>
+                <td><select id="nbecoute"name="cars" class="custom-select mb-3">
+                  <option selected>3</option>
+                </select></td>
+                </tr>
+            <tr>
+              <td>Pause entre les écoutes :</td>
+              <td><select id="tpspauseecoute"name="cars" class="custom-select mb-3">
+                <option value>1</option>
+                <option selected>3</option>
+                <option value>5</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td >Temps de rédaction:</td>
+              <td><select id="tpsredaction"name="cars" class="custom-select mb-3">
+                <option value>3</option>
+                <option value>5</option>
+                <option selected>10</option>
+              </select></td>      
+              </tr>
+
+          </tbody>
+        </table>
+        <p><button type="button" onclick="goetp4()" class="btn btn-primary btn-block">Suivant</button> </p>
+      </div>
+    </div>
+  </div>
+</div> 
+<div class="container-fluid" id="regles">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light" style="text-align: center;">Quelques règles avant de commencer</h1>
+      <br>
+      <p class="lead" id="txt1regles">Le document sera diffusé none fois</p>
+      <p class="lead" id="txt2regles">Entre chaque écoute, une pause de none sera faite</p>
+      <p class="lead" id="txt3regles">À la fin des écoutes, vous aurez none minutes pour rédiger un compte-rendu en français !</p>
+      <p><button type="button" onclick="videoplay()" class="btn btn-primary btn-block">Commencer</button> </p>
+    </div>
+  </div>
 </div>
 
-<div class="container-fluid" id="game">
-    <div class="row">
-        <div class="col-12 p-0">
-
-            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-                <div class="card" id="engagement">
-                    <div class="card-body">
-                        <button type="button" onclick="engagementA()" class="btn btn-primary btn-lg btn-block">Engagement équipe A</button>
-                        <button type="button"  onclick="engagementB()" class="btn btn-primary btn-lg btn-block">Engagement équipe B</button>
-                    </div>
-                  </div>
-
-                  <div class="card" id="equipeA">
-                    <div class="card-body bg-danger">
-                        <button type="button" onclick="tirmenuA()" class="btn btn-primary btn-lg btn-block">TIR</button>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">PASSE</button>
-                        <button type="button"  onclick="perteA()" class="btn btn-primary btn-lg btn-block">PERTE</button>
-                    </div>
-                  </div>
-
-
-                  <div class="card" id="equipeB">
-                    <div class="card-body bg-info">
-                        <button type="button" onclick="tirmenuB()" class="btn btn-primary btn-lg btn-block">TIR</button>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">PASSE</button>
-                        <button type="button"  onclick="perteB()" class="btn btn-primary btn-lg btn-block">PERTE</button>
-
-                    </div>
-                  </div>
-
-                  <div class="card" id="equipeAtir">
-                    <div class="card-body bg-danger">
-                        <button type="button" onclick="tir3ptsA()" class="btn btn-primary btn-lg btn-block">3 points</button>
-                        <button type="button" onclick="tir1ptsA()" class="btn btn-primary btn-lg btn-block">Reussi</button>
-                        <button type="button" onclick="tirrecupA()" class="btn btn-primary btn-lg btn-block">Récupération</button>
-                        <button type="button" onclick="perteA()" class="btn btn-primary btn-lg btn-block"> Perte</button>
-                    </div>
-                  </div>
-
-                  <div class="card" id="equipeBtir">
-                    <div class="card-body bg-info">
-                        <button type="button" onclick="tir3ptsB()" class="btn btn-primary btn-lg btn-block">3 points</button>
-                        <button type="button" onclick="tir1ptsB()" class="btn btn-primary btn-lg btn-block">Reussi</button>
-                        <button type="button" onclick="tirrecupB()" class="btn btn-primary btn-lg btn-block">Récupération</button>
-                        <button type="button" onclick="perteB()" class="btn btn-primary btn-lg btn-block"> Perte</button>
-                    </div>
-                  </div>
-
-
-
-
-
-
-            </div>
-        </div>
+<div class="container-fluid" id="waitentreecoute">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light" style="text-align: center;" id="waitentreecoutetxt1"></h1>
+      <br>
     </div>
+  </div>
 </div>
 
-
-<div class="container-fluid" id="finpartie">
-    <div class="row">
-        <div class="col-12 p-0">
-            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-                <div class="card text-center">
-                    <div class="card-header">
-                      Featured
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover" id="table">
-                          </table>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <button onclick="saveFile()">Save XLSX file</button>
-                    </div>
-                  </div>
-            </div>
-        </div>
+<div class="container-fluid" id="fin">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light" style="text-align: center;">FIN !</h1>
+      <br>
     </div>
+  </div>
 </div>
+
+<div id=video1>
+    <video controls id="theVideo2" onended="pause1()">
+  </div>
+
+</body>
+
 
 
 <script>
-var state = 0;
-var scoreA = 0;
-var scoreB = 0;
-var t1ptsA = 0;
-var t1ptsB = 0;
-var t3ptsA = 0;
-var t3ptsB = 0;
-var passeA = 0;
-var passeB = 0;
-var tirA = 0;
-var tirB = 0;
-var pA =0;
-var pB =0;
-var pertA =0;
-var pertB = 0;
-var tirpertA =0;
-var tirpertB =0;
-var tirrecuA =0;
-var tirrecuB =0;
-
-document.getElementById("home").style.display = "none"
-document.getElementById("game").style.display = "block"
-document.getElementById("equipeA").style.display = "none"
-document.getElementById("equipeB").style.display = "none"
-document.getElementById("equipeAtir").style.display = "none"
-document.getElementById("equipeBtir").style.display = "none"
-document.getElementById("finpartie").style.display = "none"
+var countera = 10;
+var intervalIda = null;
+var ecouteencours = 0;
+var tempsentreecoute = 0;
+var nbecoute = 0;
+var finvideo = 0;
+var debutvideo = 0;
+var tempsredaction = 0;
+var tempo1 = 0;
+var tempo2 = 0;
+document.getElementById("etp2").style.display = "none";
+document.getElementById("etp3").style.display = "none";
+document.getElementById("video1").style.display = "none";
+document.getElementById("regles").style.display = "none";
+document.getElementById("waitentreecoute").style.display = "none";
+document.getElementById("fin").style.display = "none";
 
 
-
-// Engagement
-function engagementA() {
-    document.getElementById("engagement").style.display = "none"
-    document.getElementById("equipeA").style.display = "block"
+document.getElementById("myFile").addEventListener("change", changeVideo);
+function changeVideo() {
+  var chosenFile = document.getElementById("myFile").files[0];
+  document.getElementById("theVideo1").setAttribute("src", URL.createObjectURL(chosenFile));
+  document.getElementById("theVideo2").setAttribute("src", URL.createObjectURL(chosenFile));
+}
+function goetp2(){
+    document.getElementById("textefinvideo").innerHTML = (new Date(document.getElementById("theVideo1").duration * 1000).toISOString().substr(11, 8));
+    finvideo = document.getElementById("theVideo1").duration;
+    document.getElementById("theVideo1").duration;
+    document.getElementById("etp1").style.display = "none";
+    document.getElementById("etp2").style.display = "block";
 }
 
-function engagementB() {
-    document.getElementById("engagement").style.display = "none"
-    document.getElementById("equipeB").style.display = "block"
+function getCurTimedebut() {
+  var vid = document.getElementById("theVideo1");
+  vid.pause();
+  document.getElementById("textedebutvideo").innerHTML = new Date(vid.currentTime * 1000).toISOString().substr(11, 8);
+  debutvideo = vid.currentTime;
 }
 
-// PERTE
-function perteA() {
-    document.getElementById("equipeA").style.display = "none"
-    document.getElementById("equipeAtir").style.display = "none"
-    document.getElementById("equipeB").style.display = "block"
-    pertA = pertA +1;
-}
-function perteB() {
-    document.getElementById("equipeB").style.display = "none"
-    document.getElementById("equipeBtir").style.display = "none"
-    document.getElementById("equipeA").style.display = "block"
-    pertB = pertB + 1;
+function resetDebut() {
+  var vid = document.getElementById("theVideo1");
+  vid.pause();
+  vid.currentTime = 0;
+  document.getElementById("textedebutvideo").innerHTML = new Date(0 * 1000).toISOString().substr(11, 8);
+  debutvideo = 0;
+
+} 
+
+
+function goetp3(){
+  var vid = document.getElementById("theVideo1");
+  vid.pause();
+  document.getElementById("etp2").style.display = "none";
+  document.getElementById("etp3").style.display = "block";
+// Calcul début vidéo
+var hms = document.getElementById("textedebutvideo").textContent;
+var a = hms.split(':');
+var debutvideo = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+console.log(debutvideo);
+
+// Calcul fin vidéo
+var hms = document.getElementById("textefinvideo").textContent;
+var a = hms.split(':');
+var finvideo = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+console.log(finvideo);
+
+// Gérer interface
+
 }
 
-// TIR
-function tirmenuA() {
-    document.getElementById("equipeA").style.display = "none"
-    document.getElementById("equipeAtir").style.display = "block"
-    tirA = tirA + 1;
-}
-function tirmenuB() {
-    document.getElementById("equipeB").style.display = "none"
-    document.getElementById("equipeBtir").style.display = "block"
-    tirB = tirB + 1;
-}
-
-//PASSE
-function passeA() {
-    pA = pA + 1;
-}
-function passeB() {
-    pB = pB + 1;
-}
-
-// 3pts
-function tir3ptsA() {
-    document.getElementById("equipeA").style.display = "none"
-    document.getElementById("equipeAtir").style.display = "none"
-    document.getElementById("equipeB").style.display = "block"
-    t3ptsA = t3ptsA +1;
-    scoreA = scoreA +3;
-}
-function tir3ptsB() {
-    document.getElementById("equipeB").style.display = "none"
-    document.getElementById("equipeBtir").style.display = "none"
-    document.getElementById("equipeA").style.display = "block"
-    t3ptsB = t3ptsB +1;
-    scoreB = scoreB +3;
-}
-
-// 1pts
-function tir1ptsA() {
-    document.getElementById("equipeA").style.display = "none"
-    document.getElementById("equipeAtir").style.display = "none"
-    document.getElementById("equipeB").style.display = "block"
-    scoreA = 1 + scoreA;
-    t1ptsA = 1 + t1ptsA;
-}
-function tir1ptsB() {
-    document.getElementById("equipeB").style.display = "none"
-    document.getElementById("equipeBtir").style.display = "none"
-    document.getElementById("equipeA").style.display = "block"
-    t1ptsB = 1 + t1ptsB;
-    scoreB = 1 + scoreB;
-    console.log(t1ptsB);
-}
-
-// recup
-function tirrecupA() {
-    document.getElementById("equipeA").style.display = "block"
-    document.getElementById("equipeAtir").style.display = "none"
-    tirrecuA = tirrecuA + 1;
-}
-function tirrecupB() {
-    document.getElementById("equipeB").style.display = "block"
-    document.getElementById("equipeBtir").style.display = "none"
-    tirrecuB = tirrecuB + 1;
-}
-
-// tir perte
-function tirperteA() {
-    document.getElementById("equipeA").style.display = "block"
-    document.getElementById("equipeAtir").style.display = "none"
-    tirpertA = tirpertA + 1;
-}
-function tirperteB() {
-    document.getElementById("equipeB").style.display = "block"
-    document.getElementById("equipeBtir").style.display = "none"
-    tirpertB = tirpertB + 1;
-}
-
-function finpartie(){
-document.getElementById("home").style.display = "none"
-document.getElementById("game").style.display = "none"
-document.getElementById("equipeA").style.display = "none"
-document.getElementById("equipeB").style.display = "none"
-document.getElementById("equipeAtir").style.display = "none"
-document.getElementById("equipeBtir").style.display = "none"
-document.getElementById("nav2").style.display = "none"
-document.getElementById("nav1").style.display = "none"
-document.getElementById("finpartie").style.display = "block"
-var table = document.getElementById("table");
-var row = table.insertRow(0);
-row.insertCell(0).innerHTML = "Equipe A";
-row.insertCell(1).innerHTML = "";
-row.insertCell(2).innerHTML = "Equipe B";
-var row = table.insertRow(1);
-row.insertCell(0).innerHTML = scoreA;
-row.insertCell(1).innerHTML = "Score";
-row.insertCell(2).innerHTML = scoreB;
-var row = table.insertRow(2);
-row.insertCell(0).innerHTML = tirA;
-row.insertCell(1).innerHTML = "Tirs";
-row.insertCell(2).innerHTML = tirB;
-var row = table.insertRow(3);
-row.insertCell(0).innerHTML = t3ptsA;
-row.insertCell(1).innerHTML = "Tirs 3 points";
-row.insertCell(2).innerHTML = t3ptsB;
-var row = table.insertRow(4);
-row.insertCell(0).innerHTML = t1ptsA;
-row.insertCell(1).innerHTML = "Tirs 1 point";
-row.insertCell(2).innerHTML = t1ptsB;
-var row = table.insertRow(5);
-row.insertCell(0).innerHTML = tirpertA+tirrecuA;
-row.insertCell(1).innerHTML = "Tirs echoués";
-row.insertCell(2).innerHTML = tirpertB+tirrecuB;
-var row = table.insertRow(6);
-row.insertCell(0).innerHTML = tirpertA+tirrecuA;
-row.insertCell(1).innerHTML = "Tirs echoués";
-row.insertCell(2).innerHTML = tirpertB+tirrecuB;
-var row = table.insertRow(7);
-row.insertCell(0).innerHTML = pA;
-row.insertCell(1).innerHTML = "Passes";
-row.insertCell(2).innerHTML = pB;
-var row = table.insertRow(8);
-row.insertCell(0).innerHTML = pertA;
-row.insertCell(1).innerHTML = "Pertes";
-row.insertCell(2).innerHTML = pertB;
+function goetp4(){
+   tempsentreecoute = document.getElementById('tpspauseecoute').options[document.getElementById('tpspauseecoute').selectedIndex].text*60;
+   nbecoute = document.getElementById('nbecoute').options[document.getElementById('nbecoute').selectedIndex].text
+   tempsredaction = document.getElementById('tpsredaction').options[document.getElementById('tpsredaction').selectedIndex].text*60;
+  document.getElementById("etp2").style.display = "none";
+  document.getElementById("etp3").style.display = "none";
+  document.getElementById("video1").style.display = "none";
+  document.getElementById("regles").style.display = "block";
+  document.getElementById("etp1").style.display = "none";
+  document.getElementById("nav").style.display = "none";
+  document.getElementById("home").style.display = "none";
+  document.body.style.backgroundImage = "none";
+  document.body.style.backgroundColor = "black";
+  document.getElementById("txt1regles").innerHTML ="Le document sera diffusé "+nbecoute+" fois";
+  document.getElementById("txt2regles").innerHTML = "Entre chaque écoute, une pause de "+tempsentreecoute/60+" minute(s) sera faite" ;
+  document.getElementById("txt3regles").innerHTML = "À la fin des écoutes, vous aurez "+tempsredaction/60+" minutes pour rédiger un compte-rendu en français !";
 }
 
 
 
 
-
-
-window.saveFile = function saveFile () {
-    var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
-    var opts = [{sheetid:'Sheet One',header:true}];
-    var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
-    									[opts,[sheet_1_data ,sheet_2_data]]);
+function videoplay(){
+  var vid = document.getElementById("theVideo2");
+  document.getElementById("regles").style.display = "none";
+  document.getElementById("video1").style.display = "block";
+  console.log(debutvideo);
+  vid.currentTime = debutvideo;
+  document.getElementById("theVideo2").play();
+  ecouteencours = ecouteencours+1;
+  console.log(ecouteencours);
 }
+
+
+
+
+function pause1(){
+  var vid = document.getElementById("theVideo1");
+
+  console.log(Number(nbecoute));
+  console.log(Number(ecouteencours));
+  if(ecouteencours < Number(nbecoute)){
+  countera = tempsentreecoute;
+  //countera = 1;
+  intervalIda = null;
+  document.getElementById("waitentreecoute").style.display = "block";
+  document.getElementById("video1").style.display = "none";
+  intervalIda = setInterval(bipa, 1000);
+
+  }
+  else {
+  countera = tempsredaction;
+  //countera = 1;
+  intervalIda = null;
+  document.getElementById("waitentreecoute").style.display = "block";
+  document.getElementById("video1").style.display = "none";
+  intervalIda = setInterval(bipa, 1000);  }
+
+}
+
+
+
+function bipa() {
+  var vid = document.getElementById("theVideo1");
+
+    countera--;
+    if(countera == 0) {
+      if(ecouteencours < Number(nbecoute)){
+        clearInterval(intervalIda);
+        document.getElementById("waitentreecoute").style.display = "none";
+        document.getElementById("video1").style.display = "block";
+        videoplay();
+      } else {
+        document.getElementById("fin").style.display = "block";
+        document.getElementById("waitentreecoutetxt1").innerHTML = "TERMINE !";
+        document.getElementById("waitentreecoute").style.display = "none";
+
+      }
+
+    }
+    else {
+      if(ecouteencours < Number(nbecoute)){
+        document.getElementById("waitentreecoutetxt1").innerHTML = "Prochaine écoute dans "+new Date(countera * 1000).toISOString().substr(11, 8);
+    } else {
+      document.getElementById("waitentreecoutetxt1").innerHTML = "Fin dans "+new Date(countera * 1000).toISOString().substr(11, 8);
+    }
+    }
+    }
+
+
+
 </script>
-
-
